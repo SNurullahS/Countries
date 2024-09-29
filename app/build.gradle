@@ -32,7 +32,6 @@ android {
         jvmTarget = '1.8'
     }
 }
-
 dependencies {
 
 
@@ -62,13 +61,13 @@ dependencies {
 
     implementation libs.rxjava
     implementation libs.rxandroid
-
-    implementation libs.glide
-
-    implementation libs.palette.v7
-    implementation libs.design
-
     implementation libs.androidx.preference
+
+    // use picasso <todo>
+    //implementation libs.glide
+    //implementation libs.palette.v7
+    //implementation libs.design
 
 
 }
+
