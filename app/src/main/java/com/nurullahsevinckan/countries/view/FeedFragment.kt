@@ -5,14 +5,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nurullahsevinckan.countries.R
+import com.nurullahsevinckan.countries.adapter.CountryAdapter
+import com.nurullahsevinckan.countries.viewmodel.FeedViewModel
 
 
 class FeedFragment : Fragment() {
 
+    private lateinit var viewModel : FeedViewModel
+    private lateinit var countryAdapter : CountryAdapter
+    private lateinit var recyclerView : RecyclerView
+    private lateinit var errorView : TextView
+    private lateinit var loadingBar : ProgressBar
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
 
     override fun onCreateView(
@@ -25,9 +42,54 @@ class FeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recyclerView = view.findViewById<RecyclerView>(R.id.countryList)
+        errorView = view.findViewById<TextView>(R.id.countryError)
+        loadingBar = view.findViewById<ProgressBar>(R.id.countryLoading)
 
+        countryAdapter = CountryAdapter(arrayListOf())
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = countryAdapter
+        viewModel = ViewModelProvider(this)[FeedViewModel::class.java]
+        viewModel.refreshData()
 
+        observeListData()
 
+    }
 
+    fun observeListData(){
+        // here we use viewLifecycleOwner instead of this keyword. Because Google recommend it
+        viewModel.countries.observe(viewLifecycleOwner, Observer { countries ->
+
+            countries?.let {
+                recyclerView.visibility = View.VISIBLE
+                countryAdapter.updateCountryList(countries)
+            }
+
+        })
+
+        viewModel.countryError.observe(viewLifecycleOwner, Observer {error ->
+            error?.let{
+                if(it){
+                errorView.visibility = View.VISIBLE
+                }else{
+                    errorView.visibility = View.GONE
+                }
+            }
+        })
+
+        viewModel.countryLoading.observe(viewLifecycleOwner, Observer {loading->
+            loading?.let{
+                if(it){
+                    loadingBar.visibility = View.VISIBLE
+                    errorView.visibility = View.GONE
+                    recyclerView.visibility = View.GONE
+
+                }else
+                {
+                    loadingBar.visibility = View.GONE
+
+                }
+            }
+        })
     }
 }
