@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.nurullahsevinckan.countries.R
+import com.nurullahsevinckan.countries.viewmodel.CountryViewModel
 
 
 class CountryFragment : Fragment() {
+
+    private lateinit var countryViewModel : CountryViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +28,9 @@ class CountryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // View element implementation
-        // val goButton: Button = view.findViewById(R.id.goButton)
 
-
+        val viewModel = ViewModelProvider(this)[CountryViewModel::class.java]
+        viewModel.getDataFromRoom()
 
     }
 
