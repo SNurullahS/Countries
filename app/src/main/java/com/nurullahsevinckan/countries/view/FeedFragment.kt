@@ -56,7 +56,7 @@ class FeedFragment : Fragment() {
 
     }
 
-    fun observeListData(){
+    private fun observeListData(){
         // here we use viewLifecycleOwner instead of this keyword. Because Google recommend it
         viewModel.countries.observe(viewLifecycleOwner, Observer { countries ->
 
