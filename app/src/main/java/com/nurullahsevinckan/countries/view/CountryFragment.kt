@@ -16,7 +16,7 @@ class CountryFragment : Fragment() {
 
     private lateinit var viewModel : CountryViewModel
     private lateinit var countryName : TextView
-    private lateinit var countrRegion : TextView
+    private lateinit var countryRegion : TextView
     private lateinit var countryCapital : TextView
     private lateinit var countryCurrency : TextView
 
@@ -34,10 +34,10 @@ class CountryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        countryName = view.findViewById<TextView>(R.id.countryName)
-        countrRegion = view.findViewById<TextView>(R.id.countryRegion)
-        countryCapital = view.findViewById<TextView>(R.id.countryCapital)
-        countryCurrency = view.findViewById<TextView>(R.id.countryCurrency)
+        countryName = view.findViewById(R.id.countryName)
+        countryRegion = view.findViewById(R.id.countryRegion)
+        countryCapital = view.findViewById(R.id.countryCapital)
+        countryCurrency = view.findViewById(R.id.countryCurrency)
 
 
         val viewModel = ViewModelProvider(this)[CountryViewModel::class.java]
@@ -52,7 +52,7 @@ class CountryFragment : Fragment() {
             country?.let{
                 countryName.text = country.countryName
                 countryCapital.text = country.countryCapital
-                countrRegion.text = country.countryRegion
+                countryRegion.text = country.countryRegion
                 countryCurrency.text = country.countryCurrency
             }
         })

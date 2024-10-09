@@ -42,9 +42,9 @@ class FeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById<RecyclerView>(R.id.countryList)
-        errorView = view.findViewById<TextView>(R.id.countryError)
-        loadingBar = view.findViewById<ProgressBar>(R.id.countryLoading)
+        recyclerView = view.findViewById(R.id.countryList)
+        errorView = view.findViewById(R.id.countryError)
+        loadingBar = view.findViewById(R.id.countryLoading)
 
         countryAdapter = CountryAdapter(arrayListOf())
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -57,7 +57,7 @@ class FeedFragment : Fragment() {
     }
 
     private fun observeListData(){
-        // here we use viewLifecycleOwner instead of this keyword. Because Google recommend it
+        // here we use viewLifecycleOwner instead of "this" keyword. Because Google recommend it
         viewModel.countries.observe(viewLifecycleOwner, Observer { countries ->
 
             countries?.let {
@@ -87,7 +87,6 @@ class FeedFragment : Fragment() {
                 }else
                 {
                     loadingBar.visibility = View.GONE
-
                 }
             }
         })
