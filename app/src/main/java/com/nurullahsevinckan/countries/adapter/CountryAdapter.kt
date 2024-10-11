@@ -34,7 +34,7 @@ class CountryAdapter(val countryList : ArrayList<Country>) : RecyclerView.Adapte
     }
 
     //This is for swiperefreshlayout in fragment feed xml
-    fun updateCountryList(newCountryList : ArrayList<Country>){
+    fun updateCountryList(newCountryList: List<Country>){
         countryList.clear()
         countryList.addAll(newCountryList)
         notifyDataSetChanged()
