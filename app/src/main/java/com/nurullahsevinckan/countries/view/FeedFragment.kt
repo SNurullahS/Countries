@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nurullahsevinckan.countries.R
 import com.nurullahsevinckan.countries.adapter.CountryAdapter
 import com.nurullahsevinckan.countries.viewmodel.FeedViewModel
@@ -23,6 +24,7 @@ class FeedFragment : Fragment() {
     private lateinit var recyclerView : RecyclerView
     private lateinit var errorView : TextView
     private lateinit var loadingBar : ProgressBar
+    private lateinit var refreshLayout : SwipeRefreshLayout
 
 
 
@@ -45,6 +47,7 @@ class FeedFragment : Fragment() {
         recyclerView = view.findViewById(R.id.countryList)
         errorView = view.findViewById(R.id.countryError)
         loadingBar = view.findViewById(R.id.countryLoading)
+        refreshLayout = view.findViewById(R.id.swipeRefreshLayout)
 
         countryAdapter = CountryAdapter(arrayListOf())
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -53,6 +56,17 @@ class FeedFragment : Fragment() {
         viewModel.refreshData()
 
         observeListData()
+
+        refreshLayout.setOnRefreshListener {
+            recyclerView.visibility = View.GONE
+            errorView.visibility = View.GONE
+            loadingBar.visibility = View.VISIBLE
+            viewModel.refreshData()
+            refreshLayout.isRefreshing = false
+        }
+
+
+
 
     }
 

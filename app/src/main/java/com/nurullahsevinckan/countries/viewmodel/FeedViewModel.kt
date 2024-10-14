@@ -24,6 +24,7 @@ class FeedViewModel : ViewModel() {
 
     private fun getDataFromAPI(){
     countryLoading.value = true
+
         disposable.add(
             countryAPIService.getData()
                 .subscribeOn(Schedulers.newThread())
