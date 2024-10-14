@@ -13,6 +13,7 @@ fun ImageView.downloadImageFromUrl(url : String?,progressDrawable : CircularProg
         .placeholder(progressDrawable)
         .error(R.mipmap.ic_launcher_round)
 
+    // Usage of Glide lib
     Glide.with(context)
         .load(url)
         .into(this)

@@ -32,7 +32,7 @@ class CountryAdapter(val countryList : ArrayList<Country>) : RecyclerView.Adapte
                 Navigation.findNavController(it).navigate(action)
             }
         }
-
+        // For show images with Glide lib
         holder.imageView.downloadImageFromUrl(countryList[position].imageUrl,
             placeHolderProgressBar(holder.view.context)
         )
