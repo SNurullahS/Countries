@@ -67,6 +67,9 @@ dependencies {
     implementation libs.rxandroid
     implementation libs.androidx.preference
 
+    implementation libs.glide.v4151
+    kapt libs.compiler
+
     // use picasso <todo>
     //implementation libs.glide
     //implementation libs.palette.v7
