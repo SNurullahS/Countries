@@ -61,7 +61,7 @@ class FeedFragment : Fragment() {
             recyclerView.visibility = View.GONE
             errorView.visibility = View.GONE
             loadingBar.visibility = View.VISIBLE
-            viewModel.refreshData()
+            viewModel.refreshDataFromAPI()
             refreshLayout.isRefreshing = false
         }
 
