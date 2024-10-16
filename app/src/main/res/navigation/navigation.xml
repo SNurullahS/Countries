@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_countryFragment_to_feedFragment"
             app:destination="@id/feedFragment" />
+        <argument
+            android:name="countriesuuid"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/feedFragment"

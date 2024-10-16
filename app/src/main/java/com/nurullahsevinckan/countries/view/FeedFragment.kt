@@ -65,9 +65,6 @@ class FeedFragment : Fragment() {
             refreshLayout.isRefreshing = false
         }
 
-
-
-
     }
 
     private fun observeListData(){

@@ -35,5 +35,5 @@ data class Country(
     val imageUrl : String?
 ){
     @PrimaryKey(true)
-    var uuid : Int = 0
+    var uuid : Long = 0
 }

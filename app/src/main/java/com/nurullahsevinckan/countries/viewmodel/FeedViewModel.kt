@@ -83,7 +83,7 @@ class FeedViewModel(application: Application) : BaseViewModel(application){
             val listLong = dao.insertAll(*list.toTypedArray()) // list -> individual
             var i  = 0
             while(i < list.size){
-                list[i].uuid = listLong[i].toInt()
+                list[i].uuid = listLong[i]
                 i += 1
             }
 
