@@ -2,7 +2,6 @@ package com.nurullahsevinckan.countries.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.nurullahsevinckan.countries.model.Country
 import com.nurullahsevinckan.countries.services.CountryAPIService
 import com.nurullahsevinckan.countries.services.CountryDatabase
@@ -33,7 +32,7 @@ class FeedViewModel(application: Application) : BaseViewModel(application){
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object :DisposableSingleObserver<List<Country>>(){
                     override fun onSuccess(t: List<Country>) {
-                        showCountries(t)
+                        storeDataInSQLite(t)
                     }
 
                     override fun onError(e: Throwable) {

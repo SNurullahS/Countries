@@ -9,7 +9,5 @@ class CountryViewModel: ViewModel() {
 
 
     fun getDataFromRoom(){
-        val country = Country("deneme","deneme","deneme","deneme","deneme","deneme")
-        countryLiveData.value = country
     }
 }
