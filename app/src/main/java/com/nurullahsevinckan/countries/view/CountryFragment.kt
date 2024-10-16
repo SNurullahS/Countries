@@ -40,7 +40,6 @@ class CountryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = CountryViewModel(Application())
         countryName = view.findViewById(R.id.countryName)
         countryRegion = view.findViewById(R.id.countryRegion)
         countryCapital = view.findViewById(R.id.countryCapital)
@@ -51,20 +50,23 @@ class CountryFragment : Fragment() {
         countryUuid = CountryFragmentArgs.fromBundle(it).countriesuuid
         }
 
-        val viewModel = ViewModelProvider(this)[CountryViewModel::class.java]
+        viewModel = ViewModelProvider(this)[CountryViewModel::class.java]
         viewModel.getDataFromRoom(countryUuid)
         observeListData()
     }
 
 
     private fun observeListData(){
-
+        println("observer called")
         viewModel.countryLiveData.observe(viewLifecycleOwner, Observer {country->
+            println("countrynull")
             country?.let{
+                println("let içine girdim")
                 countryName.text = country.countryName
                 countryCapital.text = country.countryCapital
                 countryRegion.text = country.countryRegion
                 countryCurrency.text = country.countryCurrency
+                println("currency ${countryCurrency}")
                 context?.let {
                     countryImage.downloadImageFromUrl(country.imageUrl, placeHolderProgressBar(it))
                 }

@@ -28,8 +28,7 @@ class CountryAdapter(val countryList : ArrayList<Country>) : RecyclerView.Adapte
         // When click one of Recycler element it will go to country detail page
         holder.view.setOnClickListener { view->
             view?.let {
-                val uuid = countryList[position].uuid
-                val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment(uuid)
+                val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment(countryList[position].uuid)
                 Navigation.findNavController(it).navigate(action)
             }
         }
